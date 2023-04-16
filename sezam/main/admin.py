@@ -1,6 +1,7 @@
 from django.contrib import admin
+from .models import *
 
 # user name: admin
 # password:  pgee2023
 
-# Register your models here.
+admin.site.register(Klas)
