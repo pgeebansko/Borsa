@@ -33,7 +33,7 @@ class Offer(models.Model):
         verbose_name_plural = 'Предложения'
 
 
-# списък предложения
+# списък отзиви
 class Comment(models.Model):
     text = models.CharField('Име', max_length=100, default='')
     offer_id = models.ForeignKey(Offer, on_delete=models.SET_NULL, null=True, blank=True)
