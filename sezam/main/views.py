@@ -31,7 +31,7 @@ def offers_by_class(request, klas):
 class MyprojectLoginView(LoginView):
     template_name = 'main/login.html'
     form_class = AuthUserForm
-    success_url = reverse_lazy('edit_page')
+    success_url = reverse_lazy('home')
 
     def get_success_url(self):
         return self.success_url
@@ -39,9 +39,9 @@ class MyprojectLoginView(LoginView):
 
 class RegisterUserView(CreateView):
     model = User
-    template_name = 'register_page.html'
+    template_name = 'main/register.html'
     form_class = RegisterUserForm
-    success_url = reverse_lazy('edit_page')
+    success_url = reverse_lazy('home')
     success_msg = 'Регистриран е нов потребител'
 
     def form_valid(self, form):
@@ -54,4 +54,4 @@ class RegisterUserView(CreateView):
 
 
 class MyProjectLogout(LogoutView):
-    next_page = reverse_lazy('edit_page')
+    next_page = reverse_lazy('home')

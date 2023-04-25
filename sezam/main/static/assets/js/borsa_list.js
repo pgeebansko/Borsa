@@ -9,6 +9,9 @@ const App = {
         reloadItem(){
         if (this.status == 0){this.status = 1} else {this.status = 0}
         },
+        triggerModal(){
+        $('#ModalReview').trigger('focus')
+        },
     },
     created: function(){
         this.status
