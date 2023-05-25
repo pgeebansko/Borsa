@@ -7,6 +7,12 @@ from django.views.generic import CreateView
 from .models import *
 from .forms import *
 
+from django.views.generic.base import View
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+from .serializers import *
+
 
 # ********************************************
 #                работни страници
@@ -55,3 +61,30 @@ class RegisterUserView(CreateView):
 
 class MyProjectLogout(LogoutView):
     next_page = reverse_lazy('home')
+
+# ********************************************
+#   R E S T   У С Л У Г И
+#   сериализатори за данни
+# ********************************************
+
+
+# Връща списък на обяви
+class DataView(APIView):
+    @staticmethod
+    def get(request):
+        print('DataView - Извикване от страна на сървъра')
+        queryset = Offer.objects.order_by('id')
+        serializer = OfferSerializer(queryset, many=True, context={"request": request})
+        return Response(serializer.data)
+
+
+# Връща списък на коментарите към дадена обява
+class ReviewsView(APIView):
+    @staticmethod
+    def get(request, pk):
+        print('ReviewsView - Извикване от страна на сървъра')
+        queryset = Comment.objects.order_by('id').filter(offer_id=pk)
+        for i in queryset:
+            print(i)
+        serializer = CommentSerializer(queryset, many=True, context={"request": request})
+        return Response(serializer.data)

@@ -1,5 +1,5 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 
 <head>
@@ -38,7 +38,7 @@
 </head>
 
 <body>
-  <!-- ======= модалени прозорци ======= -->
+  <!-- ======= модални прозорци ======= -->
   <!-- ======= отзив ======= -->
   <div class="modal fade"
        id="ModalReview"
@@ -78,7 +78,7 @@
     </div>
   </header>
   <!-- End Header -->
-
+{% verbatim %}
   <main id="main">
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
@@ -96,57 +96,20 @@
         </div>
 
         <div class="row">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch"
+               data-aos="zoom-in"
+               data-aos-delay="100"
+               v-for="(offer, offer_idx) in offers">
             <div class="icon-box">
               <div>
-                <img src="{% static 'assets/img/about.jpg' %}" class="img-fluid" alt="">
+                <img :src="offer.picture" class="img-fluid" alt="">
               </div>
-              <h4><a href="">Lorem Ipsum</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-              <a class="my-btn" @click="reloadItem()">Виж повече ...</a>
+              <h4><a href="">{{offer.title}}</a></h4>
+              <p>{{offer.content}}</p>
+              <a class="my-btn" @click="showDetails(offer_idx);">Виж повече ...</a>
             </div>
           </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="">Sed ut perspiciatis</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4><a href="">Magni Dolores</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-world"></i></div>
-              <h4><a href="">Nemo Enim</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-slideshow"></i></div>
-              <h4><a href="">Dele cardo</a></h4>
-              <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-arch"></i></div>
-              <h4><a href="">Divera don</a></h4>
-              <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
-            </div>
-          </div>
-
         </div>
 
       </div>
@@ -157,63 +120,85 @@
       <div class="container" data-aos="fade-up">
 
         <div class="row">
-          <div class="image col-lg-6" style='background-image: url("{% static 'assets/img/books2.jpg' %} ");' data-aos="fade-right"></div>
+          <div class="image col-lg-6">
+            <img :src="offers[selected_offer].picture" class="img-fluid" alt="">
+          </div>
           <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
             <div class="icon-box mt-5 mt-lg-0" data-aos="zoom-in" data-aos-delay="150">
               <i class="bx bx-collection"></i>
               <h4>Комплектът съдържа:</h4>
-              <p>Български, Математка, Английски</p>
+              <p>{{offers[selected_offer].content}}</p>
             </div>
             <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
               <i class="bx bx-cube-alt"></i>
               <h4>Цена</h4>
-              <p>по договаряне</p>
+              <p>{{offers[selected_offer].price}}</p>
             </div>
             <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
               <i class="bx bx-images"></i>
               <h4>Бележки</h4>
-              <p>В много добро състояние</p>
+              <p>{{offers[selected_offer].remark}}</p>
             </div>
             <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
               <div class="row">
                 <div class="col-6" style="text-align: left;">
                   <a class="my-btn"
                      style="width: 150px;"
-                     data-toggle="modal"
-                     data-target="#ModalReview">
+                     @click="setSection('отзив')">
                      Имам интерес
                   </a>
                 </div>
                 <div class="col-6" style="text-align: right;">
-                  <a class="my-btn" style="width: 150px; text-align: center;" @click="reloadItem()">Затвори</a>
+                  <a class="my-btn" style="width: 150px; text-align: center;" @click="setSection('списък')">Затвори</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </section>
+    <!-- ======= Section диалог за отзив ======= -->
+    <section id="EditComment" class="features" v-if="(status == 2)">
+      <div class="container" data-aos="fade-up">
+      <div class="row mt-5">
+        <hr>
+      </div>
+        <div class="row mt-5">
+          <div class="col-lg-2 mt-5 mt-lg-0">
+            <h5 class="modal-title" >Отзив</h5>
+          </div>
+          <div class="col-lg-8 mt-5 mt-lg-0">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="row mt-5">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Вашето име" required>
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Вашият Email" required>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="5" placeholder="Вашето съобщение " required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="error-message"></div>
+              </div>
+            </form>
+          </div>
 
+        </div>
       </div>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <div class="row mt-5">
+        <div class="col-lg-6 mt-5 mt-lg-0" style="text-align: center">
+          <button class="btn btn-danger" type="button" data-dismiss="modal" @click="setSection('обява')">Затвори</button>
+        </div>
+        <div class="col-lg-6 mt-5 mt-lg-0" style="text-align: center">
+          <button class="btn btn-success" type="button" data-dismiss="modal" @click="save()">&nbsp;Запази&nbsp;</button>
+        </div>
       </div>
-      <div class="modal-body">
-        ...
+      <div class="row mt-5">
+        <hr>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
     </section>
 
     <!-- ======= Counts Section ======= -->
@@ -224,19 +209,11 @@
           <div class="col-xl-7 ps-0 ps-lg-5 pe-lg-1 d-flex align-items-stretch" data-aos="fade-left" data-aos-delay="100">
             <div class="content d-flex flex-column justify-content-center">
               <hr>
-              <p>Имате 3 отзива на вашата обява:</p>
-              <div class="row">
+              <p>Имате {{count_comments}} отзива на вашата обява:</p>
+              <div class="row"  v-for="(review, n) in comments">
                 <div class="count-box">
                   <i class="bi bi-emoji-smile"></i>
-                  <p><strong>Happy Clients</strong> consequuntur voluptas nostrum aliquid ipsam architecto ut.</p>
-                </div>
-                <div class="count-box">
-                  <i class="bi bi-emoji-smile"></i>
-                  <p><strong>Happy Clients</strong> consequuntur voluptas nostrum aliquid ipsam architecto ut.</p>
-                </div>
-                <div class="count-box">
-                  <i class="bi bi-emoji-smile"></i>
-                  <p><strong>Happy Clients</strong> consequuntur voluptas nostrum aliquid ipsam architecto ut.</p>
+                  <p><strong>{{n+1}}:&nbsp;</strong> {{review.text}}</p>
                 </div>
               </div>
             </div><!-- End .content-->
@@ -247,6 +224,7 @@
     </section><!-- End Counts Section -->
 
   </main><!-- End #main -->
+{% endverbatim %}
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
@@ -259,7 +237,7 @@
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        За администратори: <a href="/admin"> -- ВХОД --</a>
       </div>
     </div>
   </footer><!-- End Footer -->

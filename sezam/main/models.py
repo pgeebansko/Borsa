@@ -38,7 +38,7 @@ class Offer(models.Model):
 # списък отзиви
 class Comment(models.Model):
     text = models.CharField('Име', max_length=100, default='')
-    offer_id = models.ForeignKey(Offer, on_delete=models.SET_NULL, null=True, blank=True)
+    offer_id = models.ForeignKey(Offer, on_delete=models.SET_NULL, null=True, blank=True, )
 
     def __str__(self):
         return self.text
