@@ -5,3 +5,5 @@ from .models import *
 # password:  pgee2023
 
 admin.site.register(Klas)
+admin.site.register(Offer)
+admin.site.register(Comment)

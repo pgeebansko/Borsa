@@ -43,13 +43,13 @@
       <a href="{% url 'home' %}" class="logo me-auto me-lg-0">
         <img src="{% static 'assets/img/logo.png'%}" alt="" class="img-fluid">
       </a>
-      {%if request.user.is_authenticated%}
+      {% if request.user.is_authenticated %}
       <p><a href="{% url 'logout_page' %}" class="get-started-btn scrollto">Log out</a></p>
-      {%else%}
+      {% else %}
       <p><a href="{% url 'login_page' %}" class="my-btn scrollto">Log in</a>
         &nbsp;&nbsp; или &nbsp;&nbsp;
       <a href="{% url 'register_page' %}" class="get-started-btn">Register</a></p>
-      {%endif%}
+      {% endif %}
     </div>
   </header><!-- End Header -->
 

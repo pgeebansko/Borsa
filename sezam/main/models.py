@@ -19,11 +19,13 @@ class Klas(models.Model):
 
 # списък предложения
 class Offer(models.Model):
-    title = models.CharField('Име', max_length=100, default='', help_text='име на офертата')
+    title = models.CharField('Име', max_length=100, default='', help_text='Име на офертата')
     class_num = models.ForeignKey(Klas, name='class_id', on_delete=models.SET_NULL, null=True, blank=True)
-    content = models.CharField('съдържание', max_length=100, default='')
-    price = models.CharField('цена', max_length=50, default='')
-    remark = models.CharField('коментар', max_length=100, default='')
+    content = models.CharField('Съдържание', max_length=100, default='')
+    price = models.CharField('Цена', max_length=50, default='')
+    remark = models.CharField('Коментар', max_length=100, default='')
+    picture = models.ImageField('Изображение', upload_to='subject_pics', blank=True,
+                                help_text='Снимка на предлаганите учебници')
 
     def __str__(self):
         return self.title
@@ -42,5 +44,5 @@ class Comment(models.Model):
         return self.text
 
     class Meta:
-        verbose_name = 'Предложение'
-        verbose_name_plural = 'Предложения'
+        verbose_name = 'Отзив'
+        verbose_name_plural = 'Отзиви'
