@@ -11,12 +11,10 @@ const App = {
 
     methods: {
         setSection(SectionName){
-            console.log('преди: '+this.status)
             if (SectionName=='списък'){this.status=0}
             if (SectionName=='обява'){this.status=1}
             if (SectionName=='отзив'){this.status=2}
             if (SectionName=='нова'){this.status=3}
-            console.log('след: '+this.status)
         },
         showDetails(id){
             this.selected_offer=id
