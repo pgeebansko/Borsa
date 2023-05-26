@@ -91,7 +91,6 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>за 8<sup>-ми</sup> клас</h2>
           <p>Вижте нашите предложения</p>
         </div>
 
@@ -201,7 +200,7 @@
       </div>
     </section>
 
-    <!-- ======= Counts Section ======= -->
+    <!-- ======= Section Отзиви ======= -->
     <section id="counts" class="counts" v-if="(status == 1)">
       <div class="container" data-aos="fade-up">
 
@@ -210,7 +209,16 @@
             <div class="content d-flex flex-column justify-content-center">
               <hr>
               <p>Имате {{count_comments}} отзива на вашата обява:</p>
-              <div class="row"  v-for="(review, n) in comments">
+<!- -------- ИЗПИТ ПО ПРАКТИКА ----------- ->
+
+              <a class="my-btn"
+                 style="width: 250px;"
+                 @click="showComments()">
+                {{button_comments}}
+              </a>
+
+<!- -------------------------------------- ->
+              <div class="row"  v-if="comments_mode==0" v-for="(review, n) in comments">
                 <div class="count-box">
                   <i class="bi bi-emoji-smile"></i>
                   <p><strong>{{n+1}}:&nbsp;</strong> {{review.text}}</p>
@@ -219,7 +227,6 @@
             </div><!-- End .content-->
           </div>
         </div>
-
       </div>
     </section><!-- End Counts Section -->
 

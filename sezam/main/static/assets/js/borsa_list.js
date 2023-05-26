@@ -6,6 +6,10 @@ const App = {
         selected_offer:0,
         comments:{},
         count_comments:0,
+// -------- ИЗПИТ ПО ПРАКТИКА -----------
+        button_comments: '',
+        comments_mode:0,
+// --------------------------------------
         }
      },
 
@@ -46,8 +50,25 @@ const App = {
                 console.log(vm.count_comments)
                 })
         },
+// -------- ИЗПИТ ПО ПРАКТИКА -----------
+        showComments(){
+            if (this.comments_mode==0){
+                this.button_comments='Покажи коментарите'
+                this.comments_mode=1
+            }
+            else {
+                this.button_comments='Скрий коментарите'
+                this.comments_mode=0
+            }
+        },
     },
+// --------------------------------------
     created: function(){
+// -------- ИЗПИТ ПО ПРАКТИКА -----------
+        this.button_comments='Скрий коментарите'
+        this.comments_mode=0
+// --------------------------------------
+
         this.status=0
         this.reloadList()
     }
