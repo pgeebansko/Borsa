@@ -91,7 +91,6 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>за 8<sup>-ми</sup> клас</h2>
           <p>Вижте нашите предложения</p>
         </div>
 
@@ -108,10 +107,19 @@
               <h4><a href="">{{offer.title}}</a></h4>
               <p>{{offer.content}}</p>
               <a class="my-btn" @click="showDetails(offer_idx);">Виж повече ...</a>
+<!- -------- ИЗПИТ ПО ПРАКТИКА ----------- ->
+
+              <br>
+              <a class="my-btn"
+                 style="width: 150px;"
+                 @click="setSection('отзив')">
+                 Имам интерес
+              </a>
+
+<!- -------------------------------------- ->
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
