@@ -237,10 +237,7 @@
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
         За администратори: <a href="/admin"> -- ВХОД --</a><hr>
-        Екип:
-        {% for t_m in team %}
-          {{t_m.name}};
-        {% endfor %}
+        <a href="{% url 'za_nas' %}"> -- EКИП --</a><hr>
 
       </div>
     </div>
