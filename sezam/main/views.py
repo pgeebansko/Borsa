@@ -19,16 +19,34 @@ from .serializers import *
 # ********************************************
 def index(request):
     classes = Klas.objects.order_by('class_num')
+    tm = Team.objects.order_by('id')
 
     context = {
         'title': 'Учебници',
         'classes': classes,
+        'team': tm,
     }
     return render(request, 'main/index.html', context)
 
 
+def team(request):
+    tm = Team.objects.order_by('id')
+
+    context = {
+        'title': 'Екип',
+        'team': tm,
+    }
+    return render(request, 'main/index2.html', context)
+
+
 def offers_by_class(request, klas):
-    return render(request, 'main/OffersList.html')
+    tm = Team.objects.order_by('id')
+
+    context = {
+        'title': 'Екип',
+        'team': tm,
+    }
+    return render(request, 'main/OffersList.html', context)
 
 
 # ********************************************

@@ -236,7 +236,12 @@
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
-        За администратори: <a href="/admin"> -- ВХОД --</a>
+        За администратори: <a href="/admin"> -- ВХОД --</a><hr>
+        Екип:
+        {% for t_m in team %}
+          {{t_m.name}};
+        {% endfor %}
+
       </div>
     </div>
   </footer><!-- End Footer -->

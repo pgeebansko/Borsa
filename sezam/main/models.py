@@ -46,3 +46,15 @@ class Comment(models.Model):
     class Meta:
         verbose_name = 'Отзив'
         verbose_name_plural = 'Отзиви'
+
+
+# списък отзиви
+class Team(models.Model):
+    name = models.CharField('Име', max_length=100, default='')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Член на екипа'
+        verbose_name_plural = 'Членове на екипа'

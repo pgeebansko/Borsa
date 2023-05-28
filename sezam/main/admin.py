@@ -7,3 +7,4 @@ from .models import *
 admin.site.register(Klas)
 admin.site.register(Offer)
 admin.site.register(Comment)
+admin.site.register(Team)

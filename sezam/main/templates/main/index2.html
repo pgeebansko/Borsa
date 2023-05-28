@@ -64,17 +64,13 @@
       </div>
 
       <div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in" data-aos-delay="250">
-        {% for cl in classes %}
+        {% for t_m in team %}
         <div class="col-xl-2 col-md-4">
           <a href="/offers_by_class/{{cl.class_num}}/">
             <div class="icon-box">
               <i class="ri-book-open-line"></i>
               <h3>
-                {% if cl.class_num == 8 %}
-                за {{cl.class_num}}<sup>-ми</sup>&nbsp;&nbsp;клас
-                {% else %}
-                за {{cl.class_num}}<sup>-ти</sup>&nbsp;&nbsp;клас
-                {% endif %}
+                {{t_m.name}}
               </h3>
             </div>
           </a>
@@ -100,11 +96,11 @@
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
-<hr>
 Екип:
         {% for t_m in team %}
           {{t_m.name}};
         {% endfor %}
+      </div>
     </div>
   </footer><!-- End Footer -->
 
